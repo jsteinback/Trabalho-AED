@@ -7,10 +7,14 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class Tela {
 
 	private JFrame frame;
+	private JTextField txtExpressao;
+	private JTextField txtResultado;
 
 	/**
 	 * Launch the application.
@@ -46,14 +50,35 @@ public class Tela {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnCalcular = new JButton("Calcular");
-		btnCalcular.setBounds(155, 144, 131, 23);
+		btnCalcular.setBounds(167, 111, 131, 23);
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
+				Calculadora c = new Calculadora();
+				Double resultado = c.Calcular(txtExpressao.getText());
+				txtResultado.setText(resultado.toString());
+				
 			}
 		});
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnCalcular);
+		
+		txtExpressao = new JTextField();
+		txtExpressao.setBounds(129, 56, 225, 20);
+		frame.getContentPane().add(txtExpressao);
+		txtExpressao.setColumns(10);
+		
+		JLabel lblExpresso = new JLabel("Express\u00E3o:");
+		lblExpresso.setBounds(54, 59, 65, 14);
+		frame.getContentPane().add(lblExpresso);
+		
+		JLabel lblResultado = new JLabel("Resultado:");
+		lblResultado.setBounds(54, 181, 65, 14);
+		frame.getContentPane().add(lblResultado);
+		
+		txtResultado = new JTextField();
+		txtResultado.setColumns(10);
+		txtResultado.setBounds(129, 178, 113, 20);
+		frame.getContentPane().add(txtResultado);
 	}
-
 }

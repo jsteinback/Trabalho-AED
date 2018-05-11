@@ -3,7 +3,7 @@ package trabalho;
 import fila.Fila;
 
 /**
- * @author Nathan Reiter, Jessica Steinback & (Lucas Bueno || Alexandre da Silva) 
+ * @author Nathan Reiter, Jessica Steinback, Lucas Bueno, Alexandre da Silva
  */
 public class Calculadora {
 
