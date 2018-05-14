@@ -4,117 +4,63 @@ public class FilaVetor<T> implements Fila<T> {
 
 	private T[] info;
 	private int limite;
-	private int tamanhoAtual;
-	private int indiceInicial;
+	private int tamanho;
+	private int inicio;
 
 	public FilaVetor(int limite) {
 		info = (T[]) new Object[limite];
 		this.limite = limite;
-		tamanhoAtual = 0;
-		indiceInicial = 0;
-	}
-
-	public FilaVetor<T> criarInvertido() throws FilaCheiaException {
-		FilaVetor f = new FilaVetor<T>(this.limite);
-		f.indiceInicial = (this.indiceInicial + this.tamanhoAtual) % this.limite;
-		int cont = 0;
-		while (cont < tamanhoAtual) {
-			f.inserir(this.info[cont]);
-			cont++;
-		}
-		return f;
-	}
-
-	public FilaVetor<T> concatenar(FilaVetor<T> f2) throws FilaCheiaException {
-		FilaVetor<T> f3 = new FilaVetor<>(this.limite + f2.limite);
-		int i = getIndiceInicial();
-		while (info[i] != null) {
-			f3.inserir(info[i]);
-			i++;
-
-			if (i == limite) {
-				i = 0;
-			}
-		}
-
-		i = f2.getIndiceInicial();
-		while (f2.info[i] != null) {
-			f3.inserir(f2.info[i]);
-			i++;
-
-			if (i == limite) {
-				i = 0;
-			}
-		}
-		return f3;
-	}
-
-	public int getIndiceInicial() {
-		return indiceInicial;
+		tamanho = 0;
+		inicio = 0;
 	}
 
 	@Override
-	public String toString() {
-		String imprimir = "";
-		int indice = indiceInicial;
-
-		while (info[indice] != null) {
-			imprimir += imprimir + info[indice] + ", ";
-			indice++;
-
-			if (indice == limite) {
-				indice = 0;
-			}
+	public void inserir(T valor) {
+		if (tamanho == limite) {
+			throw new FilaCheiaException("Fila está cheia!");
 		}
-		return imprimir;
+		int posicaoInserir = (inicio + tamanho) % limite;
+		info[posicaoInserir] = valor;
+		tamanho++;
 	}
 
 	@Override
-	public void inserir(T valor) throws FilaCheiaException {
-		if (tamanhoAtual <= limite) {
-			throw new FilaCheiaException("");
+	public boolean estaVazia() {
+		if (tamanho == 0) {
+			return true;
 		}
-		int indiceFinal;
-		indiceFinal = (indiceInicial + tamanhoAtual) % limite;
-		info[indiceFinal] = valor;
-		tamanhoAtual++;
-	}
-
-	@Override
-	public T retirar() {
-		if (estaVazio()) {
-			return null;
-		}
-
-		T valor = info[indiceInicial];
-		info[indiceInicial] = null;
-		indiceInicial = (indiceInicial + 1) % limite;
-		tamanhoAtual--;
-		return valor;
+		return false;
 	}
 
 	@Override
 	public T peek() {
-		if (estaVazio()) {
-			return null;
+		if (estaVazia()) {
+			throw new FilaVaziaException("Fila está vazia!");
 		}
-		return info[indiceInicial];
+		return info[inicio];
 	}
 
 	@Override
-	public boolean estaVazio() {
-		return tamanhoAtual == 0;
+	public T retirar() {
+		if (estaVazia()) {
+			return null;
+		}
+
+		T valor = info[inicio];
+		info[inicio] = null;
+		inicio = (inicio + 1) % limite;
+		tamanho--;
+		return valor;
 	}
 
 	@Override
 	public void liberar() {
-
-		int indice = indiceInicial;
+		int indice = inicio;
 		while (info[indice] != null) {
 			info[indice] = null;
 			indice++;
 		}
-		tamanhoAtual = 0;
+		tamanho = 0;
 	}
 
 }

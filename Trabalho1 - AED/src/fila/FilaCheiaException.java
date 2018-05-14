@@ -1,9 +1,8 @@
 package fila;
 
-public class FilaCheiaException extends Exception {
+public class FilaCheiaException extends RuntimeException {
 
 	public FilaCheiaException(String e) {
-		super("Vazia");
 	}
 
 }

@@ -2,14 +2,14 @@ package fila;
 
 public interface Fila<T> {
 
-    void inserir(T valor) throws FilaCheiaException;
-    
-    T retirar();
-    
-    T peek();
-    
-    boolean estaVazio();
-    
-    void liberar();   
-    
+	public void inserir(T valor);
+
+	public T retirar();
+
+	public T peek();
+
+	public boolean estaVazia();
+
+	public void liberar();
+
 }
