@@ -1,6 +1,6 @@
 package trabalho;
 
-import fila.Fila;
+import fila.FilaVetor;
 
 /**
  * @author Nathan Reiter, Jessica Steinback, Lucas Bueno, Alexandre da Silva
@@ -8,21 +8,20 @@ import fila.Fila;
 public class Calculadora {
 
 	public double Calcular(String expressao) {
-		Calculadora c = new Calculadora();
-		Fila<String> termosInfixada = c.extrairTermos(expressao);
-		Fila<String> termosPosfixada = c.gerarExprPosfixada(termosInfixada);
-		return c.calcularExprPosfixada(termosPosfixada);
+		FilaVetor<String> termosInfixada = extrairTermos(expressao);
+		FilaVetor<String> termosPosfixada = gerarExprPosfixada(termosInfixada);
+		return calcularExprPosfixada(termosPosfixada);
 	}
 
-	private Fila<String> extrairTermos(String expressao) {
+	private FilaVetor<String> extrairTermos(String expressao) {
 		return Passo_B.extrairTermos(expressao);
 	}
 
-	private Fila<String> gerarExprPosfixada(Fila<String> exprInfixada) {
+	private FilaVetor<String> gerarExprPosfixada(FilaVetor<String> exprInfixada) {
 		return Passo_C.gerarExprPosfixada(exprInfixada);
 	}
 
-	private double calcularExprPosfixada(Fila<String> exprPosfixada) {
+	private double calcularExprPosfixada(FilaVetor<String> exprPosfixada) {
 		return Passo_D.calcularExprPosfixada(exprPosfixada);
 	}
 }

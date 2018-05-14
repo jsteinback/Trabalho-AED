@@ -71,7 +71,7 @@ public class FilaVetor<T> implements Fila<T> {
 
 	@Override
 	public void inserir(T valor) throws RuntimeException {
-		if (tamanhoAtual == limite) {
+		if (tamanhoAtual <= limite) {
 			int indiceFinal;
 			indiceFinal = (indiceInicial + tamanhoAtual) % limite;
 			info[indiceFinal] = valor;

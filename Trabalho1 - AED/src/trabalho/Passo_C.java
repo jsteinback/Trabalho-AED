@@ -1,10 +1,10 @@
 package trabalho;
 
-import fila.Fila;
+import fila.FilaVetor;
 
 public class Passo_C {
 
-	public static Fila<String> gerarExprPosfixada(Fila<String> exprInfixada) {
+	public static FilaVetor<String> gerarExprPosfixada(FilaVetor<String> exprInfixada) {
 
 		return null;
 

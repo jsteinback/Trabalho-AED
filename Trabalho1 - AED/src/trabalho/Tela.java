@@ -50,7 +50,7 @@ public class Tela {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnCalcular = new JButton("Calcular");
-		btnCalcular.setBounds(167, 111, 131, 23);
+		btnCalcular.setBounds(168, 121, 131, 23);
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
