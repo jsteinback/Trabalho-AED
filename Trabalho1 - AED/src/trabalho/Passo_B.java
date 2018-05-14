@@ -1,12 +1,13 @@
 package trabalho;
 
+import fila.FilaCheiaException;
 import fila.FilaVetor;
 
 public class Passo_B {
 
 	private static FilaVetor<String> fila;
 
-	public static FilaVetor<String> extrairTermos(String expressao) {
+	public static FilaVetor<String> extrairTermos(String expressao) throws Exception {
 		expressao = expressao.trim();
 		expressao = expressao.replace("(", "( ").replace(")", " )"); //
 		String[] strSplit = expressao.split(" ");

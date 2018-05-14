@@ -14,7 +14,7 @@ public class FilaVetor<T> implements Fila<T> {
 		indiceInicial = 0;
 	}
 
-	public FilaVetor<T> criarInvertido() {
+	public FilaVetor<T> criarInvertido() throws FilaCheiaException {
 		FilaVetor f = new FilaVetor<T>(this.limite);
 		f.indiceInicial = (this.indiceInicial + this.tamanhoAtual) % this.limite;
 		int cont = 0;
@@ -25,7 +25,7 @@ public class FilaVetor<T> implements Fila<T> {
 		return f;
 	}
 
-	public FilaVetor<T> concatenar(FilaVetor<T> f2) {
+	public FilaVetor<T> concatenar(FilaVetor<T> f2) throws FilaCheiaException {
 		FilaVetor<T> f3 = new FilaVetor<>(this.limite + f2.limite);
 		int i = getIndiceInicial();
 		while (info[i] != null) {
@@ -70,13 +70,14 @@ public class FilaVetor<T> implements Fila<T> {
 	}
 
 	@Override
-	public void inserir(T valor) throws RuntimeException {
+	public void inserir(T valor) throws FilaCheiaException {
 		if (tamanhoAtual <= limite) {
-			int indiceFinal;
-			indiceFinal = (indiceInicial + tamanhoAtual) % limite;
-			info[indiceFinal] = valor;
-			tamanhoAtual++;
+			throw new FilaCheiaException("");
 		}
+		int indiceFinal;
+		indiceFinal = (indiceInicial + tamanhoAtual) % limite;
+		info[indiceFinal] = valor;
+		tamanhoAtual++;
 	}
 
 	@Override

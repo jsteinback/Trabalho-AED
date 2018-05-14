@@ -7,21 +7,21 @@ import fila.FilaVetor;
  */
 public class Calculadora {
 
-	public double Calcular(String expressao) {
+	public double Calcular(String expressao) throws Exception {
 		FilaVetor<String> termosInfixada = extrairTermos(expressao);
 		FilaVetor<String> termosPosfixada = gerarExprPosfixada(termosInfixada);
 		return calcularExprPosfixada(termosPosfixada);
 	}
 
-	private FilaVetor<String> extrairTermos(String expressao) {
+	private FilaVetor<String> extrairTermos(String expressao) throws Exception {
 		return Passo_B.extrairTermos(expressao);
 	}
 
-	private FilaVetor<String> gerarExprPosfixada(FilaVetor<String> exprInfixada) {
+	private FilaVetor<String> gerarExprPosfixada(FilaVetor<String> exprInfixada) throws Exception {
 		return Passo_C.gerarExprPosfixada(exprInfixada);
 	}
 
-	private double calcularExprPosfixada(FilaVetor<String> exprPosfixada) {
+	private double calcularExprPosfixada(FilaVetor<String> exprPosfixada) throws Exception {
 		return Passo_D.calcularExprPosfixada(exprPosfixada);
 	}
 }
