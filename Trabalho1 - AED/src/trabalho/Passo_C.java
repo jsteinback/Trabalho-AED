@@ -1,15 +1,15 @@
 package trabalho;
 
-import fila.FilaVetor;
-import pilha.PilhaVetor;
+import filaLista.FilaLista;
+import pilhaLista.PilhaLista;
 
 public class Passo_C {
 
-	private static FilaVetor<String> exprPosfixada = new FilaVetor<>(50);
-	private static PilhaVetor<String> pilha = new PilhaVetor<>(50);
+	private static FilaLista<String> exprPosfixada = new FilaLista<>();
+	private static PilhaLista<String> pilha = new PilhaLista<>();
 
-	public static FilaVetor<String> gerarExprPosfixada(FilaVetor<String> exprInfixada) {
-		while (!exprInfixada.estaVazia()) {
+	public static FilaLista<String> gerarExprPosfixada(FilaLista<String> exprInfixada) {
+		while (!exprInfixada.estaVazio()) {
 			String termo = exprInfixada.retirar();
 
 			if (termo.equals("(")) {

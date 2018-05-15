@@ -1,17 +1,17 @@
 package trabalho;
 
-import fila.FilaVetor;
+import filaLista.FilaLista;
 
 public class Passo_B {
 
-	private static FilaVetor<String> fila;
+	private static FilaLista<String> fila;
 
-	public static FilaVetor<String> extrairTermos(String expressao) {
+	public static FilaLista<String> extrairTermos(String expressao) {
 		expressao = expressao.trim();
 		expressao = expressao.replace("(", "( ").replace(")", " )"); //
 		String[] strSplit = expressao.split(" ");
 
-		fila = new FilaVetor<String>(strSplit.length);
+		fila = new FilaLista<String>();
 
 		for (String string : strSplit) {
 			if (string != null) {

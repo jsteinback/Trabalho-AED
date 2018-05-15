@@ -1,10 +1,10 @@
 package trabalho;
 
-import fila.Fila;
+import filaLista.FilaLista;
 
 public class Passo_D {
 
-	public static double calcularExprPosfixada(Fila<String> exprPosfixada) {
+	public static double calcularExprPosfixada(FilaLista<String> exprPosfixada) {
 
 		return 0;
 
