@@ -7,6 +7,7 @@ public class FilaVetor<T> implements Fila<T> {
 	private int tamanho;
 	private int inicio;
 
+	@SuppressWarnings("unchecked")
 	public FilaVetor(int limite) {
 		info = (T[]) new Object[limite];
 		this.limite = limite;

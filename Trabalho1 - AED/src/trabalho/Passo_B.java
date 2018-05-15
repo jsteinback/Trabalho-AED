@@ -23,5 +23,3 @@ public class Passo_B {
 	}
 
 }
-
-// (25 + 10) / 3,5

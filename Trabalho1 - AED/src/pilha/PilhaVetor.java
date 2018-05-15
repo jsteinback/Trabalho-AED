@@ -6,10 +6,11 @@ public class PilhaVetor<T> implements Pilha<T> {
 	private int limite;
 	private int tamanhoAtual;
 
+	@SuppressWarnings("unchecked")
 	public PilhaVetor(int limite) {
 		info = (T[]) new Object[limite];
+		tamanhoAtual = 0;
 		this.limite = limite;
-		this.tamanhoAtual = 0;
 	}
 
 	public PilhaVetor<T> mesclarPilhas(PilhaVetor<T> p2) {
