@@ -14,37 +14,33 @@ public class Passo_C {
 		pilha = new PilhaVetor<>(100);
 
 		while (!exprInfixada.estaVazia()) {
-			String str = exprInfixada.retirar();
+			String termo = exprInfixada.retirar();
 
-			if (str.equals("(")) {
-				pilha.push(str);
-			} else if (str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/")) {
-
-				/*
-				 * Desempilhe todos os termos que estiverem na pilha “B” e
-				 * adicione-os na fila “C”, isto é, conforme você desempilhar um
-				 * termo, adicione-o na fila “C”.
-				 * 
-				 * Este procedimento deve ser aplicado para todos os termos
-				 * armazenados na pilha “B”, porém quando for desempilhado da
-				 * pilha “B” um “parêntese de abertura”, esta regra deve ser
-				 * interrompida.
-				 * 
-				 * Neste caso, o parêntese de abertura não deve ser adicionado
-				 * na fila “C”.
-				 */
-			} else if (str.equals(")")) {
-				while (!pilha.peek().equals("(") || pilha.peek() != null) {
-					
+			if (termo.equals("(")) {
+				pilha.push(termo);
+			} else if (termo.equals("+") || termo.equals("-") || termo.equals("*") || termo.equals("/")) {
+				while (pilha.peek() != null && isNumero(pilha.peek())) {
+					exprPosfixada.inserir(pilha.pop());
 				}
-
-				exprPosfixada.inserir(pilha.pop());
+				pilha.push(termo);
+			} else if (termo.equals(")")) {
+				while (!pilha.peek().equals("(") || pilha.peek() != null) {
+					exprPosfixada.inserir(pilha.pop());
+				}
 			} else {
-				exprPosfixada.inserir(str);
+				exprPosfixada.inserir(termo);
 			}
 		}
 
 		return exprPosfixada;
+	}
+
+	private static boolean isNumero(String termo) {
+		if (termo.equals("(") || termo.equals(")") || termo.equals("+") || termo.equals("-") || termo.equals("*")
+				|| termo.equals("/")) {
+			return false;
+		}
+		return true;
 	}
 
 }
