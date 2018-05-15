@@ -17,17 +17,24 @@ public class Passo_C {
 			String termo = exprInfixada.retirar();
 
 			if (termo.equals("(")) {
+				// Parenteses na Inicio
 				pilha.push(termo);
+				
 			} else if (termo.equals("+") || termo.equals("-") || termo.equals("*") || termo.equals("/")) {
+				// Operador
 				while (pilha.peek() != null && isNumero(pilha.peek())) {
 					exprPosfixada.inserir(pilha.pop());
 				}
 				pilha.push(termo);
+				
 			} else if (termo.equals(")")) {
+				// Parenteses no Fechamento
 				while (!pilha.peek().equals("(") || pilha.peek() != null) {
 					exprPosfixada.inserir(pilha.pop());
 				}
+				
 			} else {
+				// Operando
 				exprPosfixada.inserir(termo);
 			}
 		}
