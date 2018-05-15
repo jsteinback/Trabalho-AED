@@ -24,4 +24,4 @@ public class Passo_B {
 
 }
 
-// teste: (25 + 10) / 3,5
+// (25 + 10) / 3,5
