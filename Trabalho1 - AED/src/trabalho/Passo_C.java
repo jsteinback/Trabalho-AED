@@ -56,7 +56,6 @@ public class Passo_C {
 
 		return exprPosfixada;
 	}
-	// (25 + 10) / 3,5
 
 	private static boolean isOperadorMenor(String termo) {
 		if (termo.equals("+") || termo.equals("-")) {
