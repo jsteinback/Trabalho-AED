@@ -4,45 +4,42 @@ import filaLista.FilaLista;
 
 public class Passo_B {
 
-	private static FilaLista<String> fila;
+	private static FilaLista<String> fila = new FilaLista<String>();
 
 	public static FilaLista<String> extrairTermos(String expressao) {
-		expressao = expressao.trim();
-		expressao = expressao.replace("(", "( ").replace(")", " )").replace(",", "."); //
+		expressao = expressao.replace(" ", "");
+		expressao = expressao.replace("(", " ( ").replace(")", " ) ");
+		expressao = expressao.replace("+", " + ").replace("-", " - ");
+		expressao = expressao.replace("/", " / ").replace("*", " * ");
+		expressao = expressao.replace(",", ".");
+
 		String[] strSplit = expressao.split(" ");
 
-		fila = new FilaLista<String>();
-        String caracterAnterior = "";
-        boolean contenSinal = false;
-		for (String string : strSplit) {
-			if(string != null && !string.isEmpty() &&!contenSinal)
-			{
-			  if(isOperadorMaiorMenor(caracterAnterior) && !isOperadorMaiorMenor(string))
-			  {	 
-				  string = caracterAnterior + string;
-				  caracterAnterior = "";
-			  }
-		
-			  if(string.equals("(")||(!isOperador(caracterAnterior) ||caracterAnterior.isEmpty()))
-			     fila.inserir(string.trim());
-			  caracterAnterior = string;
-		      
-				   
-			}		
+		for (int i = 0; i < strSplit.length; i++) {
+			if (strSplit[i].equals("-")) {
+				if (isOperador(strSplit[i - 1]) || strSplit[i - 1].isEmpty() && isOperador(strSplit[i - 2])) {
+					strSplit[i + 1] = "-" + strSplit[i + 1];
+					strSplit[i] = "";
+				}
+			}
 		}
+
+		for (String string : strSplit) {
+			if (string != null && !string.isEmpty()) {
+				fila.inserir(string.trim());
+			}
+		}
+
+		System.out.println(fila.toString());
 
 		return fila;
 	}
-	
-	private static boolean isOperador(String operador)
-	{
-		return (operador.trim().equals("-") || operador.trim().equals("+") || operador.trim().equals("/") || operador.trim().equals("*"));
-		
-	}
-	private static boolean isOperadorMaiorMenor(String operador)
-	{
-		return (operador.trim().equals("-") || operador.trim().equals("+") );
-		
+
+	private static boolean isOperador(String string) {
+		if (string.equals("+") || string.equals("-") || string.equals("*") || string.equals("/")) {
+			return true;
+		}
+		return false;
 	}
 
 }

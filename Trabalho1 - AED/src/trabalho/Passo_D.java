@@ -24,13 +24,13 @@ public class Passo_D {
 	}
 
 	private static String valorCalculado(String termo) {
-		Double resultado = Double.parseDouble(pilhaAuxiliar.pop().replaceAll(",", "."));
+		Double resultado = Double.parseDouble(pilhaAuxiliar.pop());
 
 		while (!pilhaAuxiliar.estaVazia()) {
 			if (termo.equals("+")) {
 				resultado += Double.parseDouble(pilhaAuxiliar.pop());
 			} else if (termo.equals("-")) {
-				resultado -= Double.parseDouble(pilhaAuxiliar.pop());
+				resultado = Double.parseDouble(pilhaAuxiliar.pop()) - resultado;
 			} else if (termo.equals("*")) {
 				resultado = Double.parseDouble(pilhaAuxiliar.pop()) * resultado;
 			} else {

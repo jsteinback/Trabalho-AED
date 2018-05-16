@@ -3,7 +3,7 @@ package trabalho;
 import filaLista.FilaLista;
 
 /**
- * @author Nathan Reiter, Jessica Steinback, Lucas Bueno, Alexandre da Silva
+ * @author Nathan Reiter, Jessica Steinback, Lucas Bueno
  */
 public class Calculadora {
 
@@ -13,15 +13,15 @@ public class Calculadora {
 		return calcularExprPosfixada(termosPosfixada);
 	}
 
-	private FilaLista<String> extrairTermos(String expressao) throws Exception {
+	public FilaLista<String> extrairTermos(String expressao) throws Exception {
 		return Passo_B.extrairTermos(expressao);
 	}
 
-	private FilaLista<String> gerarExprPosfixada(FilaLista<String> exprInfixada) throws Exception {
+	public FilaLista<String> gerarExprPosfixada(FilaLista<String> exprInfixada) throws Exception {
 		return Passo_C.gerarExprPosfixada(exprInfixada);
 	}
 
-	private double calcularExprPosfixada(FilaLista<String> exprPosfixada) throws Exception {
+	public double calcularExprPosfixada(FilaLista<String> exprPosfixada) throws Exception {
 		return Passo_D.calcularExprPosfixada(exprPosfixada);
 	}
 }
