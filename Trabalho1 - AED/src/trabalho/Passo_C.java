@@ -12,41 +12,36 @@ public class Passo_C {
 		while (!exprInfixada.estaVazio()) {
 			String termo = exprInfixada.retirar();
 
-			if (termo.equals("(")) {
-				// Parenteses na Inicio
+			if (isNumero(termo)) {
+				// Operando
+				exprPosfixada.inserir(termo);
+
+			} else if (termo.equals("(")) {
+				// Parenteses na Abertura
 				pilha.push(termo);
 
 			} else if (termo.equals("+") || termo.equals("-") || termo.equals("*") || termo.equals("/")) {
 				// Operador
-				if (!pilha.estaVazia()) {
-					try {
-						while (pilha.peek() != null || !isNumero(pilha.peek()) || isOperadorMenor(termo)) {
-							if (pilha.peek().equals("(")) {
-								pilha.pop();
-							} else {
-								exprPosfixada.inserir(pilha.pop());
-							}
-						}
-					} catch (Exception e) {
+				while (!pilha.estaVazia()) {
+					if (pilha.peek().equals("(") || pilha.peek().equals(")")
+							|| (!isOperadorMenor(termo) && isOperadorMenor(pilha.peek()))) {
+						break;
+					} else {
+						exprPosfixada.inserir(pilha.pop());
 					}
 				}
 				pilha.push(termo);
 
 			} else if (termo.equals(")")) {
 				// Parenteses no Fechamento
-				if (!pilha.estaVazia()) {
-					try {
-						while (!pilha.peek().equals("(") || pilha.peek() != null) {
-							exprPosfixada.inserir(pilha.pop());
-						}
-
-					} catch (Exception e) {
+				while (!pilha.estaVazia()) {
+					if (pilha.peek().equals("(")) {
+						pilha.pop();
+						break;
+					} else {
+						exprPosfixada.inserir(pilha.pop());
 					}
 				}
-
-			} else {
-				// Operando
-				exprPosfixada.inserir(termo);
 			}
 		}
 
